@@ -1,0 +1,9 @@
+<h1>Lista de Alunos</h1>
+
+<ul>
+  <% @students.each do |student| %>
+    <li>
+      <%= link_to student.name, training_path(student.trainings.first.slug) %>
+    </li>
+  <% end %>
+</ul>

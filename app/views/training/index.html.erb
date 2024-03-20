@@ -1,2 +1,23 @@
-<h1>Training#index</h1>
-<p>Find me in app/views/training/index.html.erb</p>
+ <h1>Planilhas Gerais</h1>
+
+<% @students.each do |student| %>
+  <h2>Aluno: <%= student.name %></h2>
+
+  <% student.trainings.each do |training| %>
+    <% training.exercises.each do |exercise| %>
+    <h3>Treino - <%= exercise.date %></h3>
+    
+      <p>Exercício: <%= exercise.category_exercise.name %></p>
+
+      <% exercise.executions.each do |execution| %>
+        <p>Rep: <%= execution.rep %>, Set: <%= execution.set %>, Observações: <%= execution.obs %></p>
+
+        <!-- Se houver links associados à execução, você também pode mostrá-los aqui -->
+        <% execution.links.each do |link| %>
+          <p>Link: <%= link.link %>, Título: <%= link.title %></p>
+        <% end %>
+      <% end %>
+          <%= link_to "Detalhes", training_path(training) %>
+    <% end %>
+  <% end %>
+<% end %>
