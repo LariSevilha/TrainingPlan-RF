@@ -1,0 +1,40 @@
+pt:
+  activerecord:
+    models:
+      category_exercise:
+        one: Categoria de exercício
+        other: Categorias de exercício
+      student:
+        one: "Aluno"
+        other: "Alunos"
+      exercise:
+        one: "Exercicio"
+        other: "Exercicios"
+      execution:
+        one: "Execução"
+        other: "Execuções"
+      training:
+        one: "Planilha de Treino"
+        other: "Planilha de Treinos"
+      user:
+        one: "Usuário"
+        other: "Usuários"
+    attributes:
+      category_exercise:
+        name: "Nome"
+      student: 
+        name: "Nome"
+      training: 
+         student: "Aluno"
+         exercises: "Exercicios"
+      exercise: 
+        date: "Dia do treino"
+        category_exercise: "Exercicio"
+        executions: "Execuções"
+      execution:
+        rep: "Qtd rep"
+        set: "Qtd series"
+        obs: "Observação"
+        links: "Link explicação/gif"
+      link: 
+        title: "Titulo do link"
