@@ -69,12 +69,18 @@ RailsAdmin.config do |config|
   
   #exercise
   config.model 'Exercise' do
-    visible false
-    list do 
-      field :category_exercise
-    end
+    visible false 
     edit do
       field :date
+      field :exercise_days
+
+    end
+  end
+  
+  #exercise day  
+  config.model 'ExerciseDay' do
+  visible false
+    edit do
       field :category_exercise do
         inline_add false
         inline_edit false

@@ -1,21 +1,30 @@
-<h1>Detalhes do Treino</h1>
-<p><strong>Aluno:</strong> <%= @training.student.name %></p>
+<div class="container">
+  
+  <h1>Detalhes do Treino</h1>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td><strong>Aluno:</strong></td>
+        <td><%= @training.student.name %></td>
+      </tr>
+      <% @training.exercises.each do |exercise| %>
+        <tr>
+          <td colspan="2">
+            <h2>Exercício:</h2>
+            <p><strong>Dia do Treino:</strong> <%= exercise.date %></p>
+            <p><strong>Categoria do Exercício:</strong> <%= exercise.category_exercise.name %></p>
+            <% exercise.executions.each do |execution| %>
+              <p><strong>Rep:</strong> <%= execution.rep %></p>
+              <p><strong>Set:</strong> <%= execution.set %></p>
+              <p><strong>Observações:</strong> <%= execution.obs %></p>
+             <% execution.links.each do |link| %>
+                <p><strong>Título:</strong> <%= link_to link.title, link.link %></p>
+              <% end %>
 
-<% @training.exercises.each do |exercise| %>
-  <h2>Exercício:</h2>
-  <p><strong>Dia do Treino:</strong> <%= exercise.date %></p>
-  <p><strong>Categoria do Exercício:</strong> <%= exercise.category_exercise.name %></p>
-
-  <h3>Execuções</h3>
-  <% exercise.executions.each do |execution| %>
-    <p><strong>Rep:</strong> <%= execution.rep %></p>
-    <p><strong>Set:</strong> <%= execution.set %></p>
-    <p><strong>Observações:</strong> <%= execution.obs %></p>
-
-    <h4>Links</h4>
-    <% execution.links.each do |link| %>
-      <p><strong>Título:</strong> <%= link.title %></p>
-      <p><strong>Link:</strong> <%= link.link %></p>
-    <% end %>
-  <% end %>
-<% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

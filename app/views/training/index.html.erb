@@ -1,23 +1,40 @@
- <h1>Planilhas Gerais</h1>
-
-<% @students.each do |student| %>
-  <h2>Aluno: <%= student.name %></h2>
-
-  <% student.trainings.each do |training| %>
-    <% training.exercises.each do |exercise| %>
-    <h3>Treino - <%= exercise.date %></h3>
-    
-      <p>Exercício: <%= exercise.category_exercise.name %></p>
-
-      <% exercise.executions.each do |execution| %>
-        <p>Rep: <%= execution.rep %>, Set: <%= execution.set %>, Observações: <%= execution.obs %></p>
-
-        <!-- Se houver links associados à execução, você também pode mostrá-los aqui -->
-        <% execution.links.each do |link| %>
-          <p>Link: <%= link.link %>, Título: <%= link.title %></p>
+<div class="container">
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Aluno</th>
+      <th scope="col">Data do Treino</th>
+      <th scope="col">Exercício</th>
+      <th scope="col">Repetições</th>
+      <th scope="col">Séries</th>
+      <th scope="col">Observações</th>
+      <th scope="col">Detalhes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <% student.trainings.each do |training| %>
+        <% training.exercises.each do |exercise| %>
+          <% exercise.executions.each do |execution| %>
+            <tr>
+              <% if exercise == training.exercises.first %> <!-- Verificar se é o primeiro exercício do treino -->
+                <td rowspan="<%= training.exercises.count %>"><%= student.name %></td> <!-- Definir a quantidade de linhas para o nome do aluno -->
+              <% end %>
+              <% if execution == exercise.executions.first %> <!-- Verificar se é a primeira execução do exercício -->
+                <td rowspan="<%= exercise.executions.count %>"><%= exercise.date %></td> <!-- Definir a quantidade de linhas para a data do treino -->
+                <td><%= exercise.category_exercise.name %></td>
+              <% end %>
+              <td><%= execution.rep %></td>
+              <td><%= execution.set %></td>
+              <td><%= execution.obs %></td>
+              <% if execution == exercise.executions.first %> <!-- Verificar se é a primeira execução do exercício -->
+                <td rowspan="<%= exercise.executions.count %>"><%= link_to "Detalhes", training_path(training) %></td> <!-- Definir a quantidade de linhas para o link de detalhes -->
+              <% end %>
+            </tr>
+          <% end %>
         <% end %>
       <% end %>
-          <%= link_to "Detalhes", training_path(training) %>
     <% end %>
-  <% end %>
-<% end %>
+  </tbody>
+</table>
+</div>

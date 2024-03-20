@@ -1,10 +1,10 @@
 class Exercise < ApplicationRecord
   belongs_to :training
   
-  has_many :executions, dependent: :destroy
-  accepts_nested_attributes_for :executions, allow_destroy: true
+ 
+  has_many :exercise_days, dependent: :destroy
+  accepts_nested_attributes_for :exercise_days, allow_destroy: true
   
-  belongs_to :category_exercise
   
   enum date: {
     "Segunda-Feira" => 0,
